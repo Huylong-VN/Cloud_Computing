@@ -20,22 +20,30 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <?php
-                session_start(); 
-                if(isset($_SESSION['username'])){
-                    echo("
+                <?php 
+                if (isset($_SESSION['username'])) {
+                    echo ("
                     <li class='nav-item'>
-                    <a class='nav-link' href='#'>Xin Chào : ".$_SESSION['username']."</a>
+                    <a class='nav-link' href='#'>Xin Chào : " . $_SESSION['username'] . "</a>
+                    </li>
+                    <li class='nav-item'>
+                    <a class='nav-link' href='cart.php'>Cart <i class='fas fa-cart-plus'></i></a>
                     </li>
                     <li class='nav-item'>
                     <a class='nav-link' href='?logout'>Đăng xuất</a>
                     </li>
                     ");
                 }
-                if(isset($_GET['logout'])){
+                else{
+                    echo("  <li class='nav-item'>
+                    <a class='nav-link' href='login.php'>Đăng nhập</a>
+                    </li>");
+                }
+                if (isset($_GET['logout'])) {
                     session_destroy();
                     header("location:index.php");
-                } 
+                }
+               
                 ?>
                
             </ul>

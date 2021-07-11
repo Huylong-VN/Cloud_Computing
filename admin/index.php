@@ -67,7 +67,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $item_per_page = !empty($_GET["per_page"]) ? $_GET["per_page"] : 2;
+                                        $item_per_page = !empty($_GET["per_page"]) ? $_GET["per_page"] : 5;
                                         $current_page = !empty($_GET['page']) ? $_GET["page"] : 1;
                                         $offset = ($current_page - 1) * $item_per_page;
                                         $users = $conn->query("Select * from user order by userId limit " . $item_per_page . " offset " . $offset . "");
@@ -90,6 +90,7 @@
                                                 justify-content: space-evenly;'>
                                                 <a class='btn btn-primary' href=crud_user/edit.php?edit=" . $row['userId'] . "><i class='fas fa-edit'></i></a>
                                                 <a class='btn btn-danger' href='?delete=" . $row['userId'] . "'><i class='fas fa-user-slash'></i></a>
+                                                <a class='btn btn-warning' href='crud_user/addRole.php?role=" . $row['userId'] . "'>Role</a>
                                                 </td>
                                             </tr>
                                             ");
