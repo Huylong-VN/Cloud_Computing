@@ -91,7 +91,6 @@
             </div>
         </div>
         <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
     </body>
 </html>
