@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php">ATN</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -20,7 +20,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <?php 
+                <?php
                 if (isset($_SESSION['username'])) {
                     echo ("
                     <li class='nav-item'>
@@ -33,9 +33,8 @@
                     <a class='nav-link' href='?logout'>Đăng xuất</a>
                     </li>
                     ");
-                }
-                else{
-                    echo("  <li class='nav-item'>
+                } else {
+                    echo ("  <li class='nav-item'>
                     <a class='nav-link' href='login.php'>Đăng nhập</a>
                     </li>");
                 }
@@ -43,9 +42,9 @@
                     session_destroy();
                     header("location:index.php");
                 }
-               
+
                 ?>
-               
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -58,7 +57,7 @@
     include_once("./config.php");
     if ($_GET['userId'] != 0) {
         $n = 0;
-        if(!empty($_GET['productId'])){
+        if (!empty($_GET['productId'])) {
             $price = $conn->query("Select * from product where productId='" . $_GET['productId'] . "'");
             while ($row = mysqli_fetch_array($price)) {
                 $n += $row['productPrice'];
@@ -70,7 +69,6 @@
                 $okks = $conn->query("INSERT INTO `cart`(`productId`, `userId`, `cartTotal`) VALUES ('" . $_GET['productId'] . "','" . $_GET['userId'] . "','" . $n . "')");
             }
         }
-       
     } else {
         header("location:login.php");
     }
@@ -93,22 +91,22 @@
                         </thead>
                         <tbody>
                             <?php
-                                $num = 0;
-                                $sum=0;
-                                $cart = $conn->query("SELECT * FROM cart,product WHERE cart.productId=product.productId AND cart.userId=" . $_GET['userId'] . "");
-                                while ($row = mysqli_fetch_array($cart)) {
-                                    $sum += $row['productPrice'];
-                                    $num++;
-                                    echo ("
+                            $num = 0;
+                            $sum = 0;
+                            $cart = $conn->query("SELECT * FROM cart,product WHERE cart.productId=product.productId AND cart.userId=" . $_GET['userId'] . "");
+                            while ($row = mysqli_fetch_array($cart)) {
+                                $sum += $row['productPrice'];
+                                $num++;
+                                echo ("
                                         <tr>
                                             <td>" . $num . "</td>
                                             <td>" . $row['productName'] . "</td>
                                             <td><img style='height: 50px;width:80px' src='" . $row['productImg'] . "' /></td>
                                             <td>" . $row['productPrice'] . "</td>
-                                            <td><a href='?userId=".$_GET['userId']."&deleteCart=".$row['cartId']."' class='btn btn-primary'>Delete</a></td>
+                                            <td><a href='?userId=" . $_GET['userId'] . "&deleteCart=" . $row['cartId'] . "' class='btn btn-primary'>Delete</a></td>
                                         </tr>
                                         ");
-                                }
+                            }
                             ?>
                         </tbody>
                         <tfoot>
@@ -118,13 +116,13 @@
 
                         </tfoot>
                         <?php
-                        if (isset($_POST['type'])=="done") {
+                        if (isset($_POST['type']) == "done") {
                             $PayDone = $conn->query("DELETE FROM `cart` WHERE userId=" . $_POST['userId'] . "");
                         }
                         if (isset($_GET['deleteCart'])) {
                             $PayDone = $conn->query("DELETE FROM `cart` WHERE cartId=" . $_GET['deleteCart'] . "");
                             header_remove("cart.php");
-                            header("location:?userId=".$_GET['userId']."");
+                            header("location:?userId=" . $_GET['userId'] . "");
                         }
                         ?>
                     </table>
@@ -137,8 +135,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-
-
         $("#done").click(() => {
             var t = confirm("Bạn chắc chắn sẽ mua sản phẩm này chứ ?")
             if (t == true) {
