@@ -33,27 +33,27 @@
                 <div class="container">
                     <div class="row">
                         <h2>Role</h2>
-                    <?php
-                    if ($_GET['role']) {
-                        include_once("../../config.php");
-                        $role = $conn->query("Select * from role,userrole where userrole.roleId=role.roleId and userrole.userId=" . $_GET['role'] . "");
-                        $allrole = $conn->query("Select * from role");
-                        while ($row = mysqli_fetch_array($allrole)) {
-                            echo ("
-                <div class='input-group mb-3'>
-                <div class='input-group-prepend'>
-                    <div class='input-group-text'>
-                        <input type='checkbox' aria-label='Checkbox for following text input'>
-                    </div>
-                </div>
-                <input readonly class='form-control text-muted' value='" . $row['roleName'] . "'>
-            </div>
-                ");
+                        <?php
+                        if ($_GET['role']) {
+                            include_once("../../config.php");
+                            $role = $conn->query("Select * from role,userrole where userrole.roleId=role.roleId and userrole.userId=" . $_GET['role'] . "");
+                            $allrole = $conn->query("Select * from role");
+                            while ($row = mysqli_fetch_array($allrole)) {
+                                echo ("
+                                <div class='input-group mb-3'>
+                                <div class='input-group-prepend'>
+                                    <div class='input-group-text'>
+                                        <input type='checkbox' aria-label='Checkbox for following text input'>
+                                    </div>
+                                </div>
+                                <input readonly class='form-control text-muted' value='" . $row['roleName'] . "'>
+                            </div>
+                                ");
+                            }
                         }
-                    }
-                    ?>
+                        ?>
                     </div>
-                   
+
                 </div>
 
             </main>
