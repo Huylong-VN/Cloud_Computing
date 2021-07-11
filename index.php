@@ -64,13 +64,13 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img style="height: 500px;width:100%;" src="https://1.bp.blogspot.com/-6EHdsYTeEF4/XsP-ED8nLBI/AAAAAAAAG9M/CWhTkfeqIbQhHzPXtQlc1DdM1-qKsofQACPcBGAYYCw/s1600/toy-story-4.jpg" alt="First slide">
+                        <img style="height: 500px;width:100%;" src="./img/slide1.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img style="height: 500px;width:100%;" src="https://ben.com.vn/tin-tuc/wp-content/uploads/2020/06/54693-scaled.jpg" alt="Second slide">
+                        <img style="height: 500px;width:100%;" src="./img/slide2.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img style="height: 500px;width:100%;" src="https://ben.com.vn/tin-tuc/wp-content/uploads/2020/06/54685-scaled.jpg" alt="Third slide">
+                        <img style="height: 500px;width:100%;" src="./img/slide3.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
@@ -137,7 +137,6 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
