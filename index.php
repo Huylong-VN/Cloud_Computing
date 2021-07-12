@@ -7,52 +7,72 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./icomoon/style.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style2.css">
 </head>
 
 <body>
     <?php session_start(); ?>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">ATN</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">More</button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <?php 
-                if (isset($_SESSION['username'])) {
-                    echo ("
-                    <li class='nav-item'>
-                    <a class='nav-link' href='#'>Xin Chào : " . $_SESSION['username'] . "</a>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">ATN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                Menu <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
-                    <li class='nav-item'>
-                    <a class='nav-link' href='cart.php'>Cart <i class='fas fa-cart-plus'></i></a>
-                    </li>
-                    <li class='nav-item'>
-                    <a class='nav-link' href='?logout'>Đăng xuất</a>
-                    </li>
-                    ");
-                }
-                else{
-                    echo("  <li class='nav-item'>
-                    <a class='nav-link' href='login.php'>Đăng nhập</a>
-                    </li>");
-                }
-                if (isset($_GET['logout'])) {
-                    session_destroy();
-                    header("location:index.php");
-                }
-               
-                ?>
+                    <?php 
+                    if (isset($_SESSION['username'])) {
+                        echo ("
+                        <li class='nav-item'>
+                        <a class='nav-link' href='#'>Xin Chào : " . $_SESSION['username'] . "</a>
+                        </li>
+                        <li class='nav-item'>
+                        <a class='nav-link' href='cart.php'>Cart <i class='fas fa-cart-plus'></i></a>
+                        </li>
+                        <li class='nav-item'>
+                        <a class='nav-link' href='?logout'>Đăng xuất</a>
+                        </li>
+                        ");
+                    }
+                    else{
+                        echo("  <li class='nav-item'>
+                        <a class='nav-link' href='login.php'>Đăng nhập</a>
+                        </li>");
+                    }
+                    if (isset($_GET['logout'])) {
+                        session_destroy();
+                        header("location:index.php");
+                    }
+                   
+                    ?>
 
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
+
     </nav>
     <div class="container">
         <div class="row">
@@ -124,20 +144,73 @@
             ?>
         </div>
     </div>
-
+    <div class="content d-flex align-items-center bg-light">
+        <h2 class="w-100 text-center"></h2>
+      </div>
     <!-- Foooterr -->
-    <div class="jumbotron">
-        <h1 class="display-3">Jumbo heading</h1>
-        <p class="lead">Jumbo helper text</p>
-        <hr class="my-2">
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-        </p>
-    </div>
+    <footer class="footer-20192">
+        <div class="site-section">
+            <div class="container">
+                <div class="cta d-block d-md-flex align-items-center px-5">
+                    <div>
+                        <h2 class="mb-0">Are you ready ?</h2>
+                        <h3 class="text-dark">Let's get started!</h3>
+                    </div>
+                    <div class="ms-auto">
+                        <a href="https://www.facebook.com/NothingFormeRN/" class="btn btn-dark rounded-0 py-3 px-5">Contact us</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <a href="https://www.facebook.com/NothingFormeRN/" class="footer-logo">ATN</a>
+                        <p class="copyright">
+                            <small>© 2021</small>
+                        </p>
+                    </div>
+                    <div class="col-sm">
+                        <h3>Customers</h3>
+                        <ul class="list-unstyled links">
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">Buyer</a></li>
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">Supplier</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm">
+                        <h3>Company</h3>
+                        <ul class="list-unstyled links">
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">About us</a></li>
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">Careers</a></li>
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm">
+                        <h3>Further Information</h3>
+                        <ul class="list-unstyled links">
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">Terms &amp; Conditions</a></li>
+                            <li><a href="https://www.facebook.com/NothingFormeRN/">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h3>Follow us</h3>
+                        <ul class="list-unstyled social">
+                            <li><a href="https://www.facebook.com/NothingFormeRN/"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                            <li><a href="#"><span class="icon-medium"></span></a></li>
+                            <li><a href="#"><span class="icon-paper-plane"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="./bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>
