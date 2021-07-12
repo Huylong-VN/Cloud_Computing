@@ -28,7 +28,7 @@
     <?php session_start(); ?>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">ATN</a>
+              <a class="navbar-brand" href="index.php"><h2 style="border-radius: 60%;border:1px solid">ATN</h2></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
