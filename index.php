@@ -133,7 +133,7 @@
                         </div>
                         <div class='card-footer'>
                             <a class='btn btn-info'>Xem</a>
-                            <a href='cart.php?productId=" . $productId . "&userId=" . $userId . "' class='btn btn-success'>Mua</a>
+                            <a href='cart.php?productId=" . $productId . "' class='btn btn-success'>Mua</a>
                         </div>
                     </div>
                         </div>");
