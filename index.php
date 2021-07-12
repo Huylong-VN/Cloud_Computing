@@ -130,7 +130,7 @@
                             <p>" . $row["productName"] . "</p>
                         </div>
                         <div class='card-body'>
-                            <img style='height: 300px;width: 300px;' src='" . $row["productImg"] . "' alt=''>
+                            <img style='height: 300px;width: 100%;' src='" . $row["productImg"] . "' alt=''>
                         </div>
                         <div class='card-footer'>
                             <a class='btn btn-info'>Xem</a>
