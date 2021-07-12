@@ -146,7 +146,7 @@
             </div>
         </div>
     </div>
-    <div class="content d-flex align-items-center bg-light">
+    <div style='height:30vh' class="content d-flex align-items-center bg-light">
         <h2 class="w-100 text-center"></h2>
     </div>
     <!-- Foooterr -->
