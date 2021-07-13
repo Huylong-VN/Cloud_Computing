@@ -8,25 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="./icomoon/style.css">
+    <link rel="stylesheet" href="./icomoon/style.css">
 
-<!-- Style CSS -->
-<link rel="stylesheet" href="css/style2.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style2.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">ATN</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 Menu <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,7 +32,8 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
-                    <?php 
+                    <?php
+                    session_start();
                     if (isset($_SESSION['username'])) {
                         echo ("
                         <li class='nav-item'>
@@ -47,9 +46,8 @@
                         <a class='nav-link' href='?logout'>Đăng xuất</a>
                         </li>
                         ");
-                    }
-                    else{
-                        echo("  <li class='nav-item'>
+                    } else {
+                        echo ("  <li class='nav-item'>
                         <a class='nav-link' href='login.php'>Đăng nhập</a>
                         </li>");
                     }
@@ -57,7 +55,7 @@
                         session_destroy();
                         header("location:index.php");
                     }
-                   
+
                     ?>
 
                 </ul>
@@ -72,22 +70,22 @@
 
     <?php
     include_once("./config.php");
-    if ($_GET['userId'] != 0) {
-        $n=0;
-        if (!empty($_GET['productId'])) {
-            $price = $conn->query("Select * from product where productId='" . $_GET['productId'] . "'");
-            while ($row = mysqli_fetch_array($price)) {
-                $n += (int)$row['productPrice'];
-            }
-            $check = $conn->query("SELECT *
-            FROM cart WHERE cart.userId=" . $_GET['userId'] . " and cart.productId=" . $_GET['productId'] . "
-            HAVING COUNT(productId) > 0");
-            if ($check->num_rows != 1) {
-                $okks = $conn->query("INSERT INTO `cart`(`productId`, `userId`, `cartTotal`) VALUES ('" . $_GET['productId'] . "','" . $_GET['userId'] . "','" . $n . "')");
-            }
+    if (isset($_SESSION['roleCustomer'])) {
+            $n = 0;
+            if (!empty($_GET['productId'])) {
+                $price = $conn->query("Select * from product where productId='" . $_GET['productId'] . "'");
+                while ($row = mysqli_fetch_array($price)) {
+                    $n += (int)$row['productPrice'];
+                }
+                $check = $conn->query("SELECT *
+                FROM cart WHERE cart.userId=" . $_GET['userId'] . " and cart.productId=" . $_GET['productId'] . "
+                HAVING COUNT(productId) > 0");
+                if ($check->num_rows != 1) {
+                    $okks = $conn->query("INSERT INTO `cart`(`productId`, `userId`, `cartTotal`) VALUES ('" . $_GET['productId'] . "','" . $_GET['userId'] . "','" . $n . "')");
+                }
         }
     } else {
-        header("location:login.php");
+       // header("location:login.php");
     }
     ?>
 
@@ -110,10 +108,10 @@
                             <?php
                             $num = 0;
                             $sum = 0;
-                            $cart = $conn->query("SELECT * FROM cart,product WHERE cart.productId=product.productId AND cart.userId=" . $_GET['userId'] . "");
+                            $cart = $conn->query("SELECT * FROM cart,product WHERE cart.productId=product.productId AND cart.userId=" . $_SESSION['roleCustomer'] . "");
                             while ($row = mysqli_fetch_array($cart)) {
                                 $sum += (int)$row['productPrice'];
-                                $sum=number_format($sum,3)."VND";
+                                $sum = number_format($sum, 3) . "VND";
                                 $num++;
                                 echo ("
                                         <tr>
@@ -121,7 +119,7 @@
                                             <td>" . $row['productName'] . "</td>
                                             <td><img style='height: 50px;width:80px' src='" . $row['productImg'] . "' /></td>
                                             <td>" . $row['productPrice'] . "</td>
-                                            <td><a href='?userId=" . $_GET['userId'] . "&deleteCart=" . $row['cartId'] . "' class='btn btn-primary'>Delete</a></td>
+                                            <td><a href='?userId=" . $_SESSION['roleCustomer'] . "&deleteCart=" . $row['cartId'] . "' class='btn btn-primary'>Delete</a></td>
                                         </tr>
                                         ");
                             }
@@ -150,7 +148,7 @@
     </div>
     <div class="content d-flex align-items-center bg-light">
         <h2 class="w-100 text-center"></h2>
-      </div>
+    </div>
     <!-- Foooterr -->
     <footer class="footer-20192">
         <div class="site-section">
@@ -210,7 +208,7 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./bootstrap-5.0.2-dist/js/bootstrap.min.js" ></script>
+    <script src="./bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script>
         $("#done").click(() => {
             var t = confirm("Bạn chắc chắn sẽ mua sản phẩm này chứ ?")
